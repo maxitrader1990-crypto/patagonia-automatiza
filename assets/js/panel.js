@@ -1,11 +1,6 @@
-/* assets/js/panel.js */
-
 // ==========================================
 // PANEL DE CLIENTE - FUNCIONES PRINCIPALES
 // ==========================================
-
-// Proteger ruta (requiere autenticación)
-protectRoute();
 
 // Variables globales
 let currentUser = null;
@@ -13,8 +8,19 @@ let currentUser = null;
 // Inicializar panel al cargar
 document.addEventListener('DOMContentLoaded', async () => {
     try {
+        // Verificar sesión primero
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!session) {
+            console.log('❌ No hay sesión activa, redirigiendo al login...');
+            window.location.href = '../login.html';
+            return;
+        }
+
+        console.log('✅ Sesión activa detectada');
+
         // Obtener usuario actual
         currentUser = await getCurrentUserData();
+        console.log('✅ Datos de usuario obtenidos:', currentUser);
 
         // Cargar datos según la página
         const currentPage = window.location.pathname;
@@ -38,7 +44,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     } catch (error) {
         console.error('❌ Error al cargar panel:', error);
-        window.location.href = '../login.html';
+        alert('Error al cargar el panel: ' + error.message);
+        // No redirigir inmediatamente para evitar el loop
     }
 });
 
