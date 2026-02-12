@@ -144,6 +144,12 @@ body {
     color: var(--light);
 }
 
+.top-bar-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
 .top-bar-right {
     display: flex;
     align-items: center;
@@ -181,7 +187,7 @@ body {
 .notification-dropdown {
     position: absolute;
     top: 50px;
-    right: 0;
+    left: 0;
     width: 350px;
     max-height: 400px;
     background: var(--dark-alt);
