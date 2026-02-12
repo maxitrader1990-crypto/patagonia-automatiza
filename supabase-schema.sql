@@ -62,6 +62,10 @@ CREATE POLICY "Los usuarios pueden actualizar su propio perfil"
 ON clientes FOR UPDATE 
 USING (auth.uid() = id);
 
+CREATE POLICY "Los usuarios pueden insertar su propio perfil durante el registro" 
+ON clientes FOR INSERT 
+WITH CHECK (auth.uid() = id);
+
 -- Políticas de seguridad para servicios
 CREATE POLICY "Los usuarios pueden ver sus propios servicios" 
 ON servicios FOR SELECT 

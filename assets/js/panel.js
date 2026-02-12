@@ -42,6 +42,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Mostrar nombre de usuario en top bar
         displayUserInfo();
 
+        // Inicializar sistema de notificaciones
+        if (typeof initNotifications !== 'undefined') {
+            initNotifications();
+        }
+
     } catch (error) {
         console.error('❌ Error al cargar panel:', error);
         alert('Error al cargar el panel: ' + error.message);

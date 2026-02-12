@@ -173,6 +173,132 @@ body {
     border-radius: 10px;
 }
 
+/* Notification Dropdown */
+.notification-icon {
+    position: relative;
+}
+
+.notification-dropdown {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 350px;
+    max-height: 400px;
+    background: var(--dark-alt);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.notification-dropdown.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.notification-dropdown-header {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.notification-dropdown-header h4 {
+    color: var(--light);
+    margin: 0;
+    font-size: 1rem;
+}
+
+.mark-all-read {
+    font-size: 0.8rem;
+    color: var(--secondary);
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.mark-all-read:hover {
+    text-decoration: underline;
+}
+
+.notification-item {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.05);
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.notification-item:hover {
+    background: rgba(100, 255, 218, 0.05);
+}
+
+.notification-item.unread {
+    background: rgba(0, 102, 255, 0.05);
+    border-left: 3px solid var(--secondary);
+}
+
+.notification-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 0.5rem;
+}
+
+.notification-item-title {
+    color: var(--light);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.notification-item-time {
+    color: var(--gray);
+    font-size: 0.75rem;
+}
+
+.notification-item-message {
+    color: var(--gray);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.notification-empty {
+    padding: 2rem;
+    text-align: center;
+    color: var(--gray);
+}
+
+/* Tipos de notificación */
+.notification-item.type-info {
+    border-left-color: var(--primary);
+}
+
+.notification-item.type-success {
+    border-left-color: var(--success);
+}
+
+.notification-item.type-warning {
+    border-left-color: var(--warning);
+}
+
+.notification-item.type-error {
+    border-left-color: var(--danger);
+}
+
 .user-avatar {
     display: flex;
     align-items: center;
