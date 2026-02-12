@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - Super Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/animations.css">
+    <link rel="stylesheet" href="../assets/css/toast.css">
+</head>
+
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-logo">
+                <h2>⚡ SUPER ADMIN</h2>
+                <p>Patagonia Automatiza</p>
+            </div>
+            <nav class="admin-menu">
+                <a href="index.html" class="admin-menu-item">
+                    <i>📊</i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="usuarios.html" class="admin-menu-item active">
+                    <i>👥</i>
+                    <span>Usuarios</span>
+                </a>
+                <a href="servicios.html" class="admin-menu-item">
+                    <i>🚀</i>
+                    <span>Servicios</span>
+                </a>
+                <a href="facturas.html" class="admin-menu-item">
+                    <i>💳</i>
+                    <span>Facturas</span>
+                </a>
+                <a href="analytics.html" class="admin-menu-item">
+                    <i>📈</i>
+                    <span>Analytics</span>
+                </a>
+                <a href="notificaciones.html" class="admin-menu-item">
+                    <i>📢</i>
+                    <span>Notificaciones</span>
+                </a>
+                <a href="configuracion.html" class="admin-menu-item">
+                    <i>⚙️</i>
+                    <span>Configuración</span>
+                </a>
+            </nav>
+            <div class="admin-footer">
+                <button class="btn btn-danger btn-sm" id="admin-logout-btn" style="width: 100%;">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <!-- Header -->
+            <header class="admin-header">
+                <h1>Gestión de Usuarios</h1>
+                <div class="admin-user">
+                    <span id="admin-name">Admin</span>
+                    <div class="admin-avatar" id="admin-avatar">SA</div>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="admin-content">
+                <!-- Stats -->
+                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-users-count">0</div>
+                        <div class="stat-label">Total Usuarios</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="active-users-count">0</div>
+                        <div class="stat-label">Usuarios Activos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="new-users-month">0</div>
+                        <div class="stat-label">Nuevos este Mes</div>
+                    </div>
+                </div>
+
+                <!-- Filters and Search -->
+                <div class="table-card" style="margin-top: 2rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                        <div style="flex: 1; min-width: 300px;">
+                            <input type="text" id="search-users" placeholder="🔍 Buscar por nombre o email..."
+                                style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                        </div>
+                        <div style="display: flex; gap: 0.5rem;">
+                            <button class="btn btn-secondary btn-sm" onclick="exportUsers()">📥 Exportar CSV</button>
+                            <button class="btn btn-primary btn-sm" onclick="showAddUserModal()">➕ Agregar
+                                Usuario</button>
+                        </div>
+                    </div>
+
+                    <!-- Users Table -->
+                    <div style="overflow-x: auto;">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Usuario</th>
+                                    <th>Email</th>
+                                    <th>Teléfono</th>
+                                    <th>Empresa</th>
+                                    <th>Registro</th>
+                                    <th>Servicios</th>
+                                    <th>Estado</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="users-table-body">
+                                <tr>
+                                    <td colspan="8" style="text-align: center; color: var(--gray); padding: 3rem;">
+                                        Cargando usuarios...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(100, 255, 218, 0.1);">
+                        <div style="color: var(--gray); font-size: 0.9rem;">
+                            Mostrando <span id="showing-count">0</span> de <span id="total-count">0</span> usuarios
+                        </div>
+                        <div id="pagination-controls"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Ver/Editar Usuario -->
+    <div id="user-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; align-items: center; justify-content: center;">
+        <div
+            style="background: var(--dark-card); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 16px; width: 90%; max-width: 600px; padding: 2rem; max-height: 90vh; overflow-y: auto;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                <h2 id="modal-title" style="color: var(--light); margin: 0;">Detalles del Usuario</h2>
+                <button onclick="closeUserModal()"
+                    style="background: none; border: none; color: var(--gray); font-size: 1.5rem; cursor: pointer;">✕</button>
+            </div>
+
+            <form id="user-form" style="display: grid; gap: 1rem;">
+                <input type="hidden" id="user-id">
+
+                <div>
+                    <label style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Nombre
+                        Completo</label>
+                    <input type="text" id="user-nombre" required
+                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                </div>
+
+                <div>
+                    <label
+                        style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Email</label>
+                    <input type="email" id="user-email" required
+                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                </div>
+
+                <div>
+                    <label
+                        style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Teléfono</label>
+                    <input type="tel" id="user-telefono"
+                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                </div>
+
+                <div>
+                    <label
+                        style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Empresa</label>
+                    <input type="text" id="user-empresa"
+                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                </div>
+
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Guardar Cambios</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeUserModal()">Cancelar</button>
+                </div>
+            </form>
+
+            <div id="user-services"
+                style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(100, 255, 218, 0.1);">
+                <h3 style="color: var(--light); margin-bottom: 1rem; font-size: 1.1rem;">Servicios del Usuario</h3>
+                <div id="services-list" style="color: var(--gray);">Cargando...</div>
+            </div>
+
+            <div id="user-notifications" style="margin-top: 1.5rem;">
+                <button class="btn btn-secondary btn-sm" onclick="sendNotificationToUser()">📢 Enviar
+                    Notificación</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+
+    <!-- Scripts -->
+    <script src="../assets/js/supabase-config.js"></script>
+    <script src="../assets/js/toast.js"></script>
+    <script src="../assets/js/admin-auth.js"></script>
+    <script src="../assets/js/admin-users.js"></script>
+
+</body>
+
+</html>
