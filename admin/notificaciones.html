@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Próximamente - Super Admin</title>
+    <title>Notificaciones - Super Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/toast.css">
 </head>
 
 <body>
@@ -22,30 +23,98 @@
                 <a href="servicios.html" class="admin-menu-item"><i>🚀</i><span>Servicios</span></a>
                 <a href="facturas.html" class="admin-menu-item"><i>💳</i><span>Facturas</span></a>
                 <a href="analytics.html" class="admin-menu-item"><i>📈</i><span>Analytics</span></a>
-                <a href="notificaciones.html" class="admin-menu-item"><i>📢</i><span>Notificaciones</span></a>
+                <a href="notificaciones.html" class="admin-menu-item active"><i>📢</i><span>Notificaciones</span></a>
                 <a href="configuracion.html" class="admin-menu-item"><i>⚙️</i><span>Configuración</span></a>
             </nav>
             <div class="admin-footer">
-                <button class="btn btn-danger btn-sm" onclick="window.location.href='../login.html'"
-                    style="width: 100%;">Cerrar Sesión</button>
+                <button class="btn btn-danger btn-sm" id="admin-logout-btn" style="width: 100%;">Cerrar Sesión</button>
             </div>
         </aside>
         <main class="admin-main">
             <header class="admin-header">
-                <h1>Próximamente</h1>
+                <h1>Enviar Notificaciones</h1>
+                <div class="admin-user">
+                    <span id="admin-name">Admin</span>
+                    <div class="admin-avatar">SA</div>
+                </div>
             </header>
-            <div class="admin-content"
-                style="display: flex; align-items: center; justify-content: center; min-height: 60vh;">
-                <div style="text-align: center;">
-                    <div style="font-size: 5rem; margin-bottom: 1rem;">🚧</div>
-                    <h2 style="color: var(--light); margin-bottom: 1rem;">Estamos trabajando en esta sección</h2>
-                    <p style="color: var(--gray); margin-bottom: 2rem;">Esta funcionalidad estará disponible
-                        próximamente</p>
-                    <a href="index.html" class="btn btn-primary">Volver al Dashboard</a>
+            <div class="admin-content">
+                <div class="table-card">
+                    <h3 style="color: var(--light); margin-bottom: 1.5rem;">📢 Notificación Masiva</h3>
+                    <form id="notification-form" style="display: grid; gap: 1.5rem; max-width: 800px;">
+                        <div>
+                            <label
+                                style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Destinatarios</label>
+                            <select id="recipients-type"
+                                style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                                <option value="all">Todos los usuarios</option>
+                                <option value="active">Solo usuarios con servicios activos</option>
+                                <option value="pending">Solo usuarios con facturas pendientes</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Tipo de
+                                Notificación</label>
+                            <select id="notification-type"
+                                style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                                <option value="info">Info</option>
+                                <option value="success">Success</option>
+                                <option value="warning">Warning</option>
+                                <option value="error">Error</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Título</label>
+                            <input type="text" id="notification-title" required
+                                placeholder="Ej: Nueva actualización disponible"
+                                style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                        </div>
+                        <div>
+                            <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Mensaje</label>
+                            <textarea id="notification-message" required rows="4"
+                                placeholder="Escribe tu mensaje aquí..."
+                                style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;"></textarea>
+                        </div>
+                        <div
+                            style="padding: 1rem; background: var(--dark-alt); border-radius: 8px; border: 1px solid rgba(100, 255, 218, 0.1);">
+                            <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 0.5rem;">Vista previa
+                                enviada a: <span id="recipients-count"
+                                    style="color: var(--secondary); font-weight: 600;">0</span> usuarios</p>
+                        </div>
+                        <div style="display: flex; gap: 1rem;">
+                            <button type="submit" class="btn btn-primary">📤 Enviar Notificaciones</button>
+                            <button type="button" class="btn btn-secondary"
+                                onclick="document.getElementById('notification-form').reset()">Limpiar</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="table-card" style="margin-top: 2rem;">
+                    <h3 style="color: var(--light); margin-bottom: 1.5rem;">📋 Historial de Envíos</h3>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Título</th>
+                                <th>Tipo</th>
+                                <th>Destinatarios</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body">
+                            <tr>
+                                <td colspan="4" style="text-align: center; color: var(--gray); padding: 2rem;">No hay
+                                    historial</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+    <script src="../assets/js/supabase-config.js"></script>
+    <script src="../assets/js/toast.js"></script>
+    <script src="../assets/js/admin-auth.js"></script>
+    <script src="../assets/js/admin-notifications.js"></script>
 </body>
 
 </html>

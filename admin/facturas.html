@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Próximamente - Super Admin</title>
+    <title>Facturas - Super Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/toast.css">
 </head>
 
 <body>
@@ -20,32 +21,112 @@
                 <a href="index.html" class="admin-menu-item"><i>📊</i><span>Dashboard</span></a>
                 <a href="usuarios.html" class="admin-menu-item"><i>👥</i><span>Usuarios</span></a>
                 <a href="servicios.html" class="admin-menu-item"><i>🚀</i><span>Servicios</span></a>
-                <a href="facturas.html" class="admin-menu-item"><i>💳</i><span>Facturas</span></a>
+                <a href="facturas.html" class="admin-menu-item active"><i>💳</i><span>Facturas</span></a>
                 <a href="analytics.html" class="admin-menu-item"><i>📈</i><span>Analytics</span></a>
                 <a href="notificaciones.html" class="admin-menu-item"><i>📢</i><span>Notificaciones</span></a>
                 <a href="configuracion.html" class="admin-menu-item"><i>⚙️</i><span>Configuración</span></a>
             </nav>
             <div class="admin-footer">
-                <button class="btn btn-danger btn-sm" onclick="window.location.href='../login.html'"
-                    style="width: 100%;">Cerrar Sesión</button>
+                <button class="btn btn-danger btn-sm" id="admin-logout-btn" style="width: 100%;">Cerrar Sesión</button>
             </div>
         </aside>
         <main class="admin-main">
             <header class="admin-header">
-                <h1>Próximamente</h1>
+                <h1>Gestión de Facturas</h1>
+                <div class="admin-user">
+                    <span id="admin-name">Admin</span>
+                    <div class="admin-avatar">SA</div>
+                </div>
             </header>
-            <div class="admin-content"
-                style="display: flex; align-items: center; justify-content: center; min-height: 60vh;">
-                <div style="text-align: center;">
-                    <div style="font-size: 5rem; margin-bottom: 1rem;">🚧</div>
-                    <h2 style="color: var(--light); margin-bottom: 1rem;">Estamos trabajando en esta sección</h2>
-                    <p style="color: var(--gray); margin-bottom: 2rem;">Esta funcionalidad estará disponible
-                        próximamente</p>
-                    <a href="index.html" class="btn btn-primary">Volver al Dashboard</a>
+            <div class="admin-content">
+                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-invoices">0</div>
+                        <div class="stat-label">Total Facturas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="paid-amount">$0</div>
+                        <div class="stat-label">Pagadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="pending-amount">$0</div>
+                        <div class="stat-label">Pendientes</div>
+                    </div>
+                </div>
+                <div class="table-card" style="margin-top: 2rem;">
+                    <div
+                        style="display: flex; justify-content: space-between; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                        <div style="display: flex; gap: 0.5rem;">
+                            <select id="filter-status" class="btn btn-secondary btn-sm">
+                                <option value="">Todos los estados</option>
+                                <option value="pagada">Pagada</option>
+                                <option value="pendiente">Pendiente</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary btn-sm" onclick="showAddInvoiceModal()">➕ Nueva Factura</button>
+                    </div>
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Monto</th>
+                                <th>Fecha Emisión</th>
+                                <th>Vencimiento</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invoices-table-body">
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 3rem;">Cargando...</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </main>
     </div>
+    <div id="invoice-modal"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; align-items: center; justify-content: center;">
+        <div
+            style="background: var(--dark-card); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 16px; width: 90%; max-width: 600px; padding: 2rem;">
+            <h2 id="invoice-modal-title" style="color: var(--light); margin-bottom: 1.5rem;">Nueva Factura</h2>
+            <form id="invoice-form" style="display: grid; gap: 1rem;">
+                <input type="hidden" id="invoice-id">
+                <div>
+                    <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Cliente</label>
+                    <select id="invoice-cliente" required
+                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                        <option value="">Seleccionar...</option>
+                    </select>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div>
+                        <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Monto</label>
+                        <input type="number" id="invoice-monto" required step="0.01"
+                            style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                    </div>
+                    <div>
+                        <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Estado</label>
+                        <select id="invoice-estado"
+                            style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                            <option value="pendiente">Pendiente</option>
+                            <option value="pagada">Pagada</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                    <button type="submit" class="btn btn-primary" style="flex: 1;">Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeInvoiceModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+    <script src="../assets/js/supabase-config.js"></script>
+    <script src="../assets/js/toast.js"></script>
+    <script src="../assets/js/admin-auth.js"></script>
+    <script src="../assets/js/admin-invoices.js"></script>
 </body>
 
 </html>

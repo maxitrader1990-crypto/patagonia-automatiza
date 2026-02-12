@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Próximamente - Super Admin</title>
+    <title>Analytics - Super Admin</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/admin.css">
 </head>
@@ -21,31 +21,96 @@
                 <a href="usuarios.html" class="admin-menu-item"><i>👥</i><span>Usuarios</span></a>
                 <a href="servicios.html" class="admin-menu-item"><i>🚀</i><span>Servicios</span></a>
                 <a href="facturas.html" class="admin-menu-item"><i>💳</i><span>Facturas</span></a>
-                <a href="analytics.html" class="admin-menu-item"><i>📈</i><span>Analytics</span></a>
+                <a href="analytics.html" class="admin-menu-item active"><i>📈</i><span>Analytics</span></a>
                 <a href="notificaciones.html" class="admin-menu-item"><i>📢</i><span>Notificaciones</span></a>
                 <a href="configuracion.html" class="admin-menu-item"><i>⚙️</i><span>Configuración</span></a>
             </nav>
             <div class="admin-footer">
-                <button class="btn btn-danger btn-sm" onclick="window.location.href='../login.html'"
-                    style="width: 100%;">Cerrar Sesión</button>
+                <button class="btn btn-danger btn-sm" id="admin-logout-btn" style="width: 100%;">Cerrar Sesión</button>
             </div>
         </aside>
         <main class="admin-main">
             <header class="admin-header">
-                <h1>Próximamente</h1>
+                <h1>Analytics y Reportes</h1>
+                <div class="admin-user"><span id="admin-name">Admin</span>
+                    <div class="admin-avatar">SA</div>
+                </div>
             </header>
-            <div class="admin-content"
-                style="display: flex; align-items: center; justify-content: center; min-height: 60vh;">
-                <div style="text-align: center;">
-                    <div style="font-size: 5rem; margin-bottom: 1rem;">🚧</div>
-                    <h2 style="color: var(--light); margin-bottom: 1rem;">Estamos trabajando en esta sección</h2>
-                    <p style="color: var(--gray); margin-bottom: 2rem;">Esta funcionalidad estará disponible
-                        próximamente</p>
-                    <a href="index.html" class="btn btn-primary">Volver al Dashboard</a>
+            <div class="admin-content">
+                <div class="table-card">
+                    <h3 style="color: var(--light); margin-bottom: 1.5rem;">📊 Reportes Rápidos</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                        <div
+                            style="padding: 1.5rem; background: var(--dark-alt); border-radius: 12px; border: 1px solid rgba(100, 255, 218, 0.1);">
+                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">📈 Crecimiento de Usuarios</h4>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Últimos 6 meses</p>
+                            <p style="color: var(--light); font-size: 1.8rem; font-weight: 700; margin-top: 1rem;"
+                                id="user-growth">+0%</p>
+                        </div>
+                        <div
+                            style="padding: 1.5rem; background: var(--dark-alt); border-radius: 12px; border: 1px solid rgba(100, 255, 218, 0.1);">
+                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">💰 Ingresos Totales</h4>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Todo el tiempo</p>
+                            <p style="color: var(--light); font-size: 1.8rem; font-weight: 700; margin-top: 1rem;"
+                                id="total-revenue">$0</p>
+                        </div>
+                        <div
+                            style="padding: 1.5rem; background: var(--dark-alt); border-radius: 12px; border: 1px solid rgba(100, 255, 218, 0.1);">
+                            <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">🎯 Tasa de Pago</h4>
+                            <p style="color: var(--gray); font-size: 0.9rem;">Facturas pagadas vs total</p>
+                            <p style="color: var(--light); font-size: 1.8rem; font-weight: 700; margin-top: 1rem;"
+                                id="payment-rate">0%</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-card" style="margin-top: 2rem;">
+                    <h3 style="color: var(--light); margin-bottom: 1rem;">🚀 Servicio Más Popular</h3>
+                    <div id="popular-service" style="color: var(--gray);">Cargando...</div>
                 </div>
             </div>
         </main>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.js"></script>
+    <script src="../assets/js/supabase-config.js"></script>
+    <script src="../assets/js/admin-auth.js"></script>
+    <script>
+        async function loadAnalytics() {
+            try {
+                const [users, invoices, services] = await Promise.all([
+                    supabase.from('clientes').select('fecha_registro'),
+                    supabase.from('facturas').select('monto, estado'),
+                    supabase.from('servicios').select('tipo')
+                ]);
+
+                // Growth
+                const now = new Date();
+                const sixMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 6, 1);
+                const newUsers = users.data.filter(u => new Date(u.fecha_registro) > sixMonthsAgo).length;
+                const growth = users.data.length > 0 ? ((newUsers / users.data.length) * 100).toFixed(1) : 0;
+                document.getElementById('user-growth').textContent = `+${growth}%`;
+
+                // Revenue
+                const totalRevenue = invoices.data.filter(i => i.estado === 'pagada').reduce((sum, i) => sum + i.monto, 0);
+                document.getElementById('total-revenue').textContent = `$${totalRevenue.toLocaleString()}`;
+
+                // Payment Rate
+                const paidCount = invoices.data.filter(i => i.estado === 'pagada').length;
+                const paymentRate = invoices.data.length > 0 ? ((paidCount / invoices.data.length) * 100).toFixed(1) : 0;
+                document.getElementById('payment-rate').textContent = `${paymentRate}%`;
+
+                // Popular Service
+                const typeCounts = {};
+                services.data.forEach(s => typeCounts[s.tipo] = (typeCounts[s.tipo] || 0) + 1);
+                const popular = Object.entries(typeCounts).sort((a, b) => b[1] - a[1])[0];
+                document.getElementById('popular-service').textContent = popular ? `${popular[0]} (${popular[1]} servicios)` : 'No hay datos';
+
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        }
+
+        setTimeout(() => { if (currentAdmin) loadAnalytics(); }, 1000);
+    </script>
 </body>
 
 </html>
