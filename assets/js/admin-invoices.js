@@ -80,22 +80,29 @@ function closeInvoiceModal() {
 
 document.getElementById('invoice-form').addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    // Generar número de factura automáticamente
+    const invoiceNumber = 'F-' + Date.now();
+
     const data = {
         cliente_id: document.getElementById('invoice-cliente').value,
+        numero: invoiceNumber,
         monto: parseFloat(document.getElementById('invoice-monto').value),
+        concepto: 'Servicio mensual', // Campo requerido
         estado: document.getElementById('invoice-estado').value,
         fecha_emision: new Date().toISOString(),
         fecha_vencimiento: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString()
     };
+
     try {
         const { error } = await supabase.from('facturas').insert([data]);
         if (error) throw error;
-        toast.success('Factura creada');
+        toast.success('Factura creada correctamente');
         closeInvoiceModal();
         loadInvoices();
     } catch (error) {
         console.error('Error:', error);
-        toast.error('Error al crear factura');
+        toast.error('Error al crear factura: ' + error.message);
     }
 });
 
