@@ -112,9 +112,29 @@ async function getCurrentUserData() {
             .from('clientes')
             .select('*')
             .eq('id', user.id)
-            .single();
+            .maybeSingle(); // Usar maybeSingle en lugar de single
 
         if (error) throw error;
+
+        // Si no existe el registro, crearlo automáticamente
+        if (!data) {
+            console.log('⚠️ No existe registro de cliente, creando...');
+            const { data: newData, error: insertError } = await supabase
+                .from('clientes')
+                .insert([{
+                    id: user.id,
+                    nombre: user.user_metadata.nombre || 'Usuario',
+                    email: user.email,
+                    telefono: user.user_metadata.telefono || '',
+                    empresa: user.user_metadata.empresa || '',
+                    fecha_registro: new Date().toISOString()
+                }])
+                .select()
+                .single();
+
+            if (insertError) throw insertError;
+            return newData;
+        }
 
         return data;
     } catch (error) {
