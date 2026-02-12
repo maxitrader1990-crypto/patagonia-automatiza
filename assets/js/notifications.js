@@ -26,7 +26,7 @@ function initNotifications() {
 
     // Cerrar dropdown al hacer click fuera
     document.addEventListener('click', (e) => {
-        if (notificationDropdown && !notificationDropdown.contains(e.target)) {
+        if (notificationDropdown && !notificationBell.contains(e.target)) {
             notificationDropdown.classList.remove('active');
         }
     });
