@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informática Avanzada - Patagonia Automatiza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">PATAGONIA AUTOMATIZA</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li class="dropdown">
+                        <a href="#servicios">Servicios ▾</a>
+                        <div class="dropdown-content">
+                            <a href="hosting.html">Hosting & Docker</a>
+                            <a href="telecomunicaciones.html">Telecomunicaciones</a>
+                            <a href="informatica.html">Informática</a>
+                            <a href="electricidad.html">Electricidad</a>
+                            <a href="seguridad.html">Seguridad</a>
+                        </div>
+                    </li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Acceso Clientes</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero page-header"
+        style="background: linear-gradient(135deg, rgba(10, 14, 39, 0.9), rgba(0, 102, 255, 0.15));">
+        <div class="container hero-content fade-in">
+            <h1>Ingeniería Informática de Élite</h1>
+            <p class="hero-subtitle">Desarrollamos el futuro de tu empresa con las tecnologías más robustas del mercado:
+                AI Agents, Docker, Laravel, Python y Administración avanzada de sistemas Linux.</p>
+        </div>
+    </section>
+
+    <!-- Web Development Grid -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Desarrollo Web & Software</h2>
+            </div>
+            <div class="grid-services">
+                <div class="service-card fade-in">
+                    <div class="service-icon">🌐</div>
+                    <h3>Landing Pages</h3>
+                    <p>Sitios de Alto Impacto optimizados para conversión y SEO.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🏢</div>
+                    <h3>Sitios Corporativos</h3>
+                    <p>Presencia digital profesional con CMS autogestionable.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">📱</div>
+                    <h3>Aplicaciones Web</h3>
+                    <p>Sistemas avanzados a medida con dashboards y APIs.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🛒</div>
+                    <h3>E-commerce</h3>
+                    <p>Tiendas online integradas con MercadoPago y gestión de stock.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">📲</div>
+                    <h3>PWA/Mobile</h3>
+                    <p>Apps multiplataforma Offline-first con notificaciones push.</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">🔐</div>
+                    <h3>Portales/Intranets</h3>
+                    <p>Sistemas empresariales multi-usuario con roles y permisos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Intermedio -->
+    <section class="contact-section" style="background: var(--dark-alt); text-align: center;">
+        <div class="container fade-in">
+            <h2>¿Listo para llevar tu negocio al siguiente nivel?</h2>
+            <div style="margin-top: 2rem;">
+                <a href="index.html#contacto" class="btn btn-primary">SOLICITAR CONSULTORÍA GRATUITA</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Stack Tecnológico</h2>
+                <p>Herramientas de vanguardia para soluciones escalables</p>
+            </div>
+            <div class="grid-services" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="service-card fade-in" style="background: rgba(0, 102, 255, 0.05);">
+                    <h3>Next Gen AI</h3>
+                    <ul class="feature-list">
+                        <li>OpenAI/Anthropic</li>
+                        <li>Ollama/Llama3</li>
+                        <li>n8n AI Agents</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in" style="background: rgba(100, 255, 218, 0.05);">
+                    <h3>DevOps</h3>
+                    <ul class="feature-list">
+                        <li>Docker</li>
+                        <li>CI/CD Pipelines</li>
+                        <li>Microservicios</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in" style="background: rgba(0, 102, 255, 0.05);">
+                    <h3>Backend</h3>
+                    <ul class="feature-list">
+                        <li>Laravel 11</li>
+                        <li>FastAPI (Python)</li>
+                        <li>Node.js</li>
+                    </ul>
+                </div>
+                <div class="service-card fade-in" style="background: rgba(100, 255, 218, 0.05);">
+                    <h3>Systems</h3>
+                    <ul class="feature-list">
+                        <li>Linux (Ubuntu/Debian)</li>
+                        <li>Nginx Web Server</li>
+                        <li>VPS Management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Patagonia Automatiza. Hecho con ❤️ en Argentina.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5402804976552" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

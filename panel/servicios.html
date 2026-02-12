@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Servicios - Patagonia Automatiza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/panel.css">
+    <style>
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: var(--dark-alt);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary);
+            box-shadow: 0 10px 30px rgba(100, 255, 218, 0.1);
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--light);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .service-card h4 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .service-actions {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid var(--secondary);
+            border-radius: 6px;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="panel-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h2>PATAGONIA AUTOMATIZA</h2>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">
+                    <i>📊</i> Dashboard
+                </a>
+                <a href="servicios.html" class="menu-item active">
+                    <i>🚀</i> Mis Servicios
+                </a>
+                <a href="facturas.html" class="menu-item">
+                    <i>💳</i> Facturas
+                </a>
+                <a href="#" class="menu-item">
+                    <i>🎫</i> Soporte
+                </a>
+                <a href="#" class="menu-item">
+                    <i>👤</i> Mi Perfil
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-logout" id="logout-btn">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="hamburger-toggle" id="sidebar-toggle">☰</div>
+                <div class="top-bar-right">
+                    <div class="notification-icon">
+                        🔔
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-avatar">
+                        <div class="avatar-circle" id="user-initials">PA</div>
+                        <span id="user-name">Usuario</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <div class="page-header">
+                    <h1>Mis Servicios</h1>
+                    <p>Gestiona todos tus servicios contratados</p>
+                </div>
+
+                <!-- Filters -->
+                <div class="filter-section">
+                    <button class="filter-btn active">Todos</button>
+                    <button class="filter-btn">Activos</button>
+                    <button class="filter-btn">Suspendidos</button>
+                    <button class="filter-btn">Hosting</button>
+                    <button class="filter-btn">Docker</button>
+                </div>
+
+                <!-- Services Grid -->
+                <div class="services-grid" id="services-list">
+                    <!-- Los servicios se cargan dinámicamente desde Firestore -->
+                    <div class="service-card">
+                        <div class="service-info">
+                            <div class="service-icon" style="font-size: 2rem;">⏳</div>
+                            <div class="service-details">
+                                <h4>Cargando servicios...</h4>
+                                <p>Por favor espera mientras cargamos tus servicios activos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5402804976552" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Scripts -->
+    <script src="../assets/js/supabase-config.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/panel.js"></script>
+</body>
+
+</html>

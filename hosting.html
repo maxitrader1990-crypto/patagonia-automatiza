@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hosting Profesional - Patagonia Automatiza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">PATAGONIA AUTOMATIZA</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li class="dropdown">
+                        <a href="#servicios">Servicios ▾</a>
+                        <div class="dropdown-content">
+                            <a href="hosting.html">Hosting & Docker</a>
+                            <a href="telecomunicaciones.html">Telecomunicaciones</a>
+                            <a href="informatica.html">Informática</a>
+                            <a href="electricidad.html">Electricidad</a>
+                            <a href="seguridad.html">Seguridad</a>
+                        </div>
+                    </li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Acceso Clientes</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero page-header">
+        <div class="container hero-content fade-in">
+            <span class="badge badge-primary">OFERTA LANZAMIENTO 2026</span>
+            <h1>Hosting Profesional</h1>
+            <p class="hero-subtitle">Potencia y rendimiento puro por solo ocho mil doscientos cincuenta pesos mensuales.
+                Sin letras chicas, solo tecnología de primer nivel para Argentina.</p>
+            <div class="pricing-price" style="font-size: 3.5rem; color: var(--secondary);">
+                $8.250 <span>/ mes + IVA</span>
+            </div>
+            <a href="#contratar" class="btn btn-primary">¡CONTRATAR AHORA!</a>
+        </div>
+    </section>
+
+    <!-- Main Hosting Plan -->
+    <section class="services-section">
+        <div class="container">
+            <div class="pricing-grid">
+                <div class="pricing-card featured fade-in">
+                    <h3>Plan Básico</h3>
+                    <div class="pricing-price">$8.250 <span>/ mes</span></div>
+                    <ul class="feature-list">
+                        <li>1 GB Espacio SSD Nutanix</li>
+                        <li>100 GB Banda Ancha Mensual</li>
+                        <li>100 Cuentas Webmail</li>
+                        <li>cPanel Incluido</li>
+                        <li>SSL Gratis</li>
+                        <li>Ideal para WordPress</li>
+                    </ul>
+                    <h4>Casos de Uso:</h4>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 1rem;">
+                        <span class="badge badge-secondary">WordPress</span>
+                        <span class="badge badge-secondary">Sandbox</span>
+                        <span class="badge badge-secondary">Pymes</span>
+                    </div>
+                </div>
+
+                <div class="pricing-card fade-in">
+                    <h3>Manifiesto Técnico</h3>
+                    <ul class="feature-list" style="font-size: 0.9rem;">
+                        <li><strong>Databases SQL:</strong> 100 / UNLIMITED</li>
+                        <li><strong>FTP Accounts:</strong> 100 / UNLIMITED</li>
+                        <li><strong>Subdomains:</strong> 100 / UNLIMITED</li>
+                        <li><strong>Passenger/Python Apps:</strong> 4 ACTIVE</li>
+                        <li><strong>Architecture:</strong> x86_64 Cloud Linux</li>
+                        <li><strong>I/O Usage:</strong> 2 MB/s</li>
+                        <li><strong>IOPS limit:</strong> 1024</li>
+                        <li><strong>Server Location:</strong> PATAGONIA, ARGENTINA</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Docker Section -->
+    <section class="services-section" style="background: var(--dark-alt);">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="badge badge-primary">NUEVO</span>
+                <h2>Contenedores Ready-to-use</h2>
+                <p>Olvídate de configurar servidores. Despliega n8n, Laravel o Python en segundos.</p>
+                <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+                    <span class="badge badge-secondary">Baja Latencia Argentina</span>
+                    <span class="badge badge-secondary">Ahorro vs n8n Cloud</span>
+                    <span class="badge badge-secondary">Filosofía No-DevOps</span>
+                </div>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Mini-Docker -->
+                <div class="pricing-card fade-in">
+                    <h3>Mini-Docker</h3>
+                    <div class="pricing-price">$8.200 <span>/ mes</span></div>
+                    <ul class="feature-list">
+                        <li>1 vCPU</li>
+                        <li>1GB RAM (incl. Swap)</li>
+                        <li>10GB SSD Alta Velocidad</li>
+                        <li>Subdominio cliente.patagoniaautomatiza.com</li>
+                        <li>SSL Let's Encrypt Gratis</li>
+                        <li>Ideal para n8n o Node.js</li>
+                    </ul>
+                </div>
+
+                <!-- App Pro -->
+                <div class="pricing-card featured fade-in">
+                    <span class="badge badge-primary"
+                        style="position: absolute; top: -15px; left: 50%; transform: translateX(-50%);">RECOMENDADO</span>
+                    <h3>App Pro</h3>
+                    <div class="pricing-price">$16.500 <span>/ mes</span></div>
+                    <ul class="feature-list">
+                        <li>1 vCPU</li>
+                        <li>2GB RAM</li>
+                        <li>20GB SSD Alta Velocidad</li>
+                        <li>Dominio personalizado</li>
+                        <li>n8n Ilimitado vs Cloud</li>
+                    </ul>
+                </div>
+
+                <!-- Business Automation -->
+                <div class="pricing-card fade-in">
+                    <h3>Business Automation</h3>
+                    <div class="pricing-price">$24.700 <span>/ mes</span></div>
+                    <ul class="feature-list">
+                        <li>2 vCPU</li>
+                        <li>4GB RAM Dedicated</li>
+                        <li>40GB SSD NVMe Performance</li>
+                        <li>Optimizado Laravel + Redis</li>
+                        <li>Soporte Técnico Senior incluido</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contract Form -->
+    <section id="contratar" class="contact-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Solicitar Activación</h2>
+                <p>Comienza hoy mismo con la mejor infraestructura</p>
+            </div>
+            <div class="contact-container" style="display: block; max-width: 600px; margin: 0 auto;">
+                <form class="contact-form fade-in">
+                    <div class="form-group">
+                        <label class="form-label">Nombre Contratante</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Teléfono (WhatsApp)</label>
+                        <input type="tel" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Dominio Deseado</label>
+                        <input type="text" class="form-input" placeholder="ej: miempresa.com" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">SOLICITAR ACTIVACIÓN</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Patagonia Automatiza. Hecho con ❤️ en Argentina.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5402804976552" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

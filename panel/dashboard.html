@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Patagonia Automatiza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/panel.css">
+</head>
+
+<body>
+    <div class="panel-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h2>PATAGONIA AUTOMATIZA</h2>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item active">
+                    <i>📊</i> Dashboard
+                </a>
+                <a href="servicios.html" class="menu-item">
+                    <i>🚀</i> Mis Servicios
+                </a>
+                <a href="facturas.html" class="menu-item">
+                    <i>💳</i> Facturas
+                </a>
+                <a href="#" class="menu-item">
+                    <i>🎫</i> Soporte
+                </a>
+                <a href="#" class="menu-item">
+                    <i>👤</i> Mi Perfil
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-logout" id="logout-btn">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="hamburger-toggle" id="sidebar-toggle">☰</div>
+                <div class="top-bar-right">
+                    <div class="notification-icon">
+                        🔔
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-avatar">
+                        <div class="avatar-circle" id="user-initials">PA</div>
+                        <span id="user-name">Usuario</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <div class="page-header">
+                    <h1>¡Bienvenido, <span id="welcome-name">Usuario</span>!</h1>
+                    <p>Aquí está el resumen de tu cuenta</p>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>Servicios Activos</h4>
+                        <div class="stat-value" id="stat-servicios">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Facturas Pendientes</h4>
+                        <div class="stat-value" id="stat-facturas">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Tickets Abiertos</h4>
+                        <div class="stat-value" id="stat-tickets">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <h4>Próximo Vencimiento</h4>
+                        <div class="stat-value" style="font-size: 1.3rem;" id="stat-vencimiento">-</div>
+                    </div>
+                </div>
+
+                <!-- Mis Servicios Section -->
+                <div class="section-card">
+                    <h3>
+                        Mis Servicios
+                        <a href="servicios.html" class="view-all-link">Ver todos →</a>
+                    </h3>
+                    <div id="recent-services">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <span class="service-icon">⏳</span>
+                                <div class="service-details">
+                                    <h4>Cargando servicios...</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Facturas Recientes Section -->
+                <div class="section-card">
+                    <h3>
+                        Facturas Recientes
+                        <a href="facturas.html" class="view-all-link">Ver todas →</a>
+                    </h3>
+                    <table class="panel-table">
+                        <thead>
+                            <tr>
+                                <th>N° Factura</th>
+                                <th>Fecha</th>
+                                <th>Concepto</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recent-invoices">
+                            <tr>
+                                <td colspan="6" style="text-align: center; color: #8892b0;">Cargando facturas...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Soporte Técnico Section -->
+                <div class="section-card">
+                    <h3>
+                        Tickets de Soporte
+                        <a href="#" class="view-all-link">Ver todos →</a>
+                    </h3>
+                    <div id="recent-tickets">
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="service-details">
+                                    <p style="color: #8892b0;">No tienes tickets activos</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5402804976552" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Scripts -->
+    <script src="../assets/js/supabase-config.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/panel.js"></script>
+
+    <script>
+        // Actualizar nombre de bienvenida después de cargar datos
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                if (currentUser) {
+                    document.getElementById('welcome-name').textContent = currentUser.nombre.split(' ')[0];
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

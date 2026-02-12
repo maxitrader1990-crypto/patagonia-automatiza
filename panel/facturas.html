@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facturas - Patagonia Automatiza</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/panel.css">
+    <style>
+        .filter-section {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid var(--secondary);
+            border-radius: 6px;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: var(--secondary);
+            color: var(--dark);
+        }
+
+        .table-container {
+            background: var(--dark-alt);
+            border: 1px solid rgba(100, 255, 218, 0.1);
+            border-radius: 12px;
+            overflow: auto;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray);
+        }
+
+        .empty-state .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="panel-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <h2>PATAGONIA AUTOMATIZA</h2>
+            </div>
+            <nav class="sidebar-menu">
+                <a href="dashboard.html" class="menu-item">
+                    <i>📊</i> Dashboard
+                </a>
+                <a href="servicios.html" class="menu-item">
+                    <i>🚀</i> Mis Servicios
+                </a>
+                <a href="facturas.html" class="menu-item active">
+                    <i>💳</i> Facturas
+                </a>
+                <a href="#" class="menu-item">
+                    <i>🎫</i> Soporte
+                </a>
+                <a href="#" class="menu-item">
+                    <i>👤</i> Mi Perfil
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn-logout" id="logout-btn">Cerrar Sesión</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="hamburger-toggle" id="sidebar-toggle">☰</div>
+                <div class="top-bar-right">
+                    <div class="notification-icon">
+                        🔔
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="user-avatar">
+                        <div class="avatar-circle" id="user-initials">PA</div>
+                        <span id="user-name">Usuario</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <div class="page-header">
+                    <h1>Facturas</h1>
+                    <p>Historial completo de facturas y pagos</p>
+                </div>
+
+                <!-- Filters -->
+                <div class="filter-section">
+                    <button class="filter-btn active">Todas</button>
+                    <button class="filter-btn">Pendientes</button>
+                    <button class="filter-btn">Pagadas</button>
+                    <button class="filter-btn">Vencidas</button>
+                </div>
+
+                <!-- Invoices Table -->
+                <div class="table-container">
+                    <table class="panel-table">
+                        <thead>
+                            <tr>
+                                <th>N° Factura</th>
+                                <th>Fecha Emisión</th>
+                                <th>Vencimiento</th>
+                                <th>Concepto</th>
+                                <th>Monto</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="facturas-tbody">
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 3rem;">
+                                    <div class="empty-state">
+                                        <div class="icon">⏳</div>
+                                        <h3>Cargando facturas...</h3>
+                                        <p>Por favor espera mientras cargamos tu historial de facturas</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/5402804976552" class="whatsapp-float" target="_blank">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+    </a>
+
+    <!-- Supabase -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Scripts -->
+    <script src="../assets/js/supabase-config.js"></script>
+    <script src="../assets/js/auth.js"></script>
+    <script src="../assets/js/panel.js"></script>
+</body>
+
+</html>
