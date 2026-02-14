@@ -1,0 +1,262 @@
+/* assets/css/auth.css */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background: linear-gradient(135deg, #0a0e27 0%, #141938 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ccd6f6;
+    padding: 2rem 0;
+    /* Added from register.html to cover both cases */
+}
+
+/* Layout Containers */
+.login-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1000px;
+    width: 90%;
+    background: rgba(20, 25, 56, 0.5);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.register-container {
+    max-width: 500px;
+    width: 90%;
+    background: rgba(20, 25, 56, 0.5);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 16px;
+    padding: 3rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* Sidebar (Login only) */
+.login-sidebar {
+    background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(100, 255, 218, 0.1));
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-sidebar h2 {
+    font-size: 2rem;
+    color: #64ffda;
+    margin-bottom: 1.5rem;
+}
+
+.login-sidebar ul {
+    list-style: none;
+    margin-top: 2rem;
+}
+
+.login-sidebar li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.login-sidebar li::before {
+    content: '✓';
+    color: #64ffda;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Form Container (Login) */
+.login-form-container {
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Logo */
+.logo {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo h1 {
+    font-size: 1.8rem;
+    color: #ccd6f6;
+    margin-bottom: 0.5rem;
+}
+
+.logo p {
+    color: #8892b0;
+    font-size: 0.9rem;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #64ffda;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.required {
+    color: #ff4444;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.9rem;
+    background: rgba(10, 14, 39, 0.7);
+    border: 1px solid rgba(136, 146, 176, 0.3);
+    border-radius: 8px;
+    color: #ccd6f6;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #64ffda;
+    box-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+}
+
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.password-hint {
+    font-size: 0.8rem;
+    color: #8892b0;
+    margin-top: 0.3rem;
+}
+
+/* Checkbox */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #8892b0;
+}
+
+/* Align items start for register page multi-line checkbox */
+.register-container .checkbox-label {
+    align-items: start;
+    margin-bottom: 1.5rem;
+}
+
+.register-container .checkbox-label input {
+    margin-top: 0.2rem;
+}
+
+.checkbox-label a {
+    color: #64ffda;
+    text-decoration: none;
+}
+
+.checkbox-label a:hover {
+    text-decoration: underline;
+}
+
+/* Links */
+.forgot-password {
+    color: #64ffda;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+.btn-login,
+.btn-register {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #0066ff, #64ffda);
+    color: #0a0e27;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-login:hover,
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0, 102, 255, 0.4);
+}
+
+.btn-register:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Footer Links */
+.register-link,
+.login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #8892b0;
+    font-size: 0.9rem;
+}
+
+.register-link a,
+.login-link a {
+    color: #64ffda;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link a:hover,
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Error Messages */
+.error-message {
+    background: rgba(255, 68, 68, 0.2);
+    color: #ff4444;
+    padding: 0.8rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .login-container {
+        grid-template-columns: 1fr;
+    }
+
+    .login-sidebar {
+        display: none;
+    }
+
+    .register-container {
+        padding: 2rem;
+    }
+}

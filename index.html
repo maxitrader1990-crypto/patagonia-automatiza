@@ -30,7 +30,7 @@
                         </div>
                     </li>
                     <li><a href="#contacto">Contacto</a></li>
-                    <li><a href="login.html" class="btn btn-primary" style="padding: 0.5rem 1.5rem;">Acceso Clientes</a>
+                    <li><a href="login.html" class="btn btn-primary btn-sm">Acceso Clientes</a>
                     </li>
                 </ul>
                 <div class="hamburger">
@@ -125,29 +125,29 @@
                     <p><strong>Teléfono:</strong> +54 280 497 6552</p>
                     <p><strong>Email:</strong> soporte@patagoniaautomatiza.com</p>
                     <p><strong>Ubicación:</strong> Patagonia, Argentina</p>
-                    <div style="margin-top: 2rem;">
+                    <div class="mt-2">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/WhatsApp_logo-color-vertical.svg"
-                            alt="WhatsApp" width="50" style="opacity: 0.8;">
+                            alt="WhatsApp" width="50" class="opacity-80">
                     </div>
                 </div>
                 <form class="contact-form">
                     <div class="form-group">
-                        <label class="form-label">Nombre Completo</label>
-                        <input type="text" class="form-input" required>
+                        <label for="nombre" class="form-label">Nombre Completo</label>
+                        <input type="text" id="nombre" class="form-input" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Email Corporativo</label>
-                        <input type="email" class="form-input" required>
+                        <label for="email" class="form-label">Email Corporativo</label>
+                        <input type="email" id="email" class="form-input" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Teléfono</label>
-                        <input type="tel" class="form-input" required>
+                        <label for="telefono" class="form-label">Teléfono</label>
+                        <input type="tel" id="telefono" class="form-input" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Mensaje</label>
-                        <textarea class="form-textarea" rows="4" required></textarea>
+                        <label for="mensaje" class="form-label">Mensaje</label>
+                        <textarea id="mensaje" class="form-textarea" rows="4" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar Formulario</button>
+                    <button type="submit" class="btn btn-primary w-100">Enviar Formulario</button>
                 </form>
             </div>
         </div>
@@ -161,7 +161,7 @@
     </footer>
 
     <!-- WhatsApp Float -->
-    <a href="https://wa.me/5402804976552" class="whatsapp-float" target="_blank">
+    <a href="https://wa.me/5402804976552" class="whatsapp-float" target="_blank" rel="noopener">
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
     </a>
 

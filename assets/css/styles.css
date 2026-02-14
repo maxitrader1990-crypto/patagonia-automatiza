@@ -10,7 +10,7 @@
     --gray: #8892b0;
     --success: #00ff88;
     --warning: #ffa500;
-    --danger: #ff4444; 
+    --danger: #ff4444;
 }
 
 * {
@@ -33,7 +33,12 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: var(--light);
     font-weight: 700;
     line-height: 1.2;
@@ -44,6 +49,7 @@ h1 {
     font-size: clamp(2.5rem, 5vw, 4rem);
     background: linear-gradient(135deg, var(--light), var(--secondary));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -84,6 +90,7 @@ header {
     width: 100%;
     height: 70px;
     background: rgba(10, 14, 39, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(100, 255, 218, 0.1);
     z-index: 1000;
@@ -132,7 +139,7 @@ nav {
     left: 0;
     background-color: var(--dark-alt);
     min-width: 220px;
-    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
     border-radius: 8px;
     padding: 1rem 0;
     z-index: 1001;
@@ -217,6 +224,10 @@ nav {
     color: var(--secondary);
 }
 
+.btn-sm {
+    padding: 0.5rem 1.5rem;
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -225,7 +236,7 @@ nav {
     padding-top: 80px;
     position: relative;
     background: radial-gradient(circle at top right, rgba(0, 102, 255, 0.1), transparent 40%),
-                radial-gradient(circle at bottom left, rgba(100, 255, 218, 0.1), transparent 40%);
+        radial-gradient(circle at bottom left, rgba(100, 255, 218, 0.1), transparent 40%);
 }
 
 .hero-content {
@@ -415,7 +426,8 @@ nav {
     position: relative;
 }
 
-.form-input, .form-textarea {
+.form-input,
+.form-textarea {
     width: 100%;
     padding: 1rem;
     background: rgba(10, 14, 39, 0.6);
@@ -426,7 +438,8 @@ nav {
     transition: all 0.3s ease;
 }
 
-.form-input:focus, .form-textarea:focus {
+.form-input:focus,
+.form-textarea:focus {
     outline: none;
     border-color: var(--secondary);
     box-shadow: 0 0 10px rgba(100, 255, 218, 0.2);
@@ -478,9 +491,17 @@ footer {
 }
 
 @keyframes pulse {
-    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
 }
 
 /* Animations */
@@ -496,20 +517,174 @@ footer {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Utilities */
+.text-center {
+    text-align: center;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.opacity-80 {
+    opacity: 0.8;
+}
+
+.bg-soft-primary {
+    background: rgba(0, 102, 255, 0.05);
+}
+
+.bg-dark-alt {
+    background-color: var(--dark-alt);
+}
+
+.hero-telecom {
+    background: radial-gradient(circle at top, rgba(100, 255, 218, 0.1), var(--dark));
+}
+
+.hero-security {
+    background: linear-gradient(135deg, var(--dark-alt), rgba(255, 68, 68, 0.1));
+}
+
+.hero-informatics {
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.9), rgba(0, 102, 255, 0.15));
+}
+
+.bg-soft-secondary {
+    background: rgba(100, 255, 218, 0.05);
+}
+
+.grid-tech {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Hosting Page Styles */
+.hero-price {
+    font-size: 3.5rem;
+    color: var(--secondary);
+}
+
+.badge-container {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+}
+
+.badge-center {
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.text-sm {
+    font-size: 0.9rem;
+}
+
+.badge-recommended {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.contact-container-center {
+    display: block;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Electricity Page Styles */
+.hero-electric {
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.9), rgba(255, 165, 0, 0.15));
+}
+
+.hero-telecom {
+    background: linear-gradient(135deg, rgba(10, 14, 39, 0.9), rgba(0, 243, 255, 0.15));
+}
+
+.badge-warning {
+    background: rgba(255, 165, 0, 0.15);
+    color: var(--warning);
+    border: 1px solid var(--warning);
+}
+
+.certification-box {
+    border: 2px solid var(--secondary);
+    display: inline-block;
+    padding: 2rem;
+    border-radius: 16px;
+}
+
+.py-5 {
+    padding: 50px 0;
+}
+
+.mb-0 {
+    margin-bottom: 0;
+}
+
+.fs-2 {
+    font-size: 2rem;
+}
+
+.p-5 {
+    padding: 3rem;
+}
+
+.fs-1-3 {
+    font-size: 1.3rem;
+}
+
+.text-gray {
+    color: #8892b0;
+}
+
+.mt-1 {
+    margin-top: 1rem;
 }
 
 /* Responsive */
 @media (max-width: 968px) {
-    h1 { font-size: 3rem; }
-    
-    .hamburger { display: block; }
-    
-    .hamburger.active .bar:nth-child(2) { opacity: 0; }
-    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-    
+    h1 {
+        font-size: 3rem;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
     .nav-links {
         position: fixed;
         left: -100%;
@@ -523,15 +698,15 @@ footer {
         padding-top: 2rem;
         border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
-    
+
     .nav-links.active {
         left: 0;
     }
-    
+
     .nav-links li {
         margin: 1.5rem 0;
     }
-    
+
     .dropdown-content {
         position: static;
         background: transparent;
@@ -540,11 +715,11 @@ footer {
         padding-left: 0;
         display: none;
     }
-    
+
     .dropdown.active .dropdown-content {
         display: block;
     }
-    
+
     .contact-container {
         grid-template-columns: 1fr;
     }
@@ -554,11 +729,12 @@ footer {
     .hero-buttons {
         flex-direction: column;
     }
-    
-    .grid-services, .pricing-grid {
+
+    .grid-services,
+    .pricing-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .btn {
         width: 100%;
     }

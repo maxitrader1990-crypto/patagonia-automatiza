@@ -435,6 +435,253 @@ body {
 }
 
 /* ==========================================
+   ADMIN PAGE SPECIFIC STYLES
+   ========================================== */
+
+/* Search & Filters */
+.admin-search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.search-wrapper {
+    flex: 1;
+    min-width: 300px;
+}
+
+.admin-search-input {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--dark-alt);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 8px;
+    color: var(--light);
+    font-family: 'Outfit', sans-serif;
+    transition: border-color 0.3s ease;
+}
+
+.admin-search-input:focus {
+    outline: none;
+    border-color: var(--secondary);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Table Loading */
+.table-loading-row td {
+    text-align: center;
+    color: var(--gray);
+    padding: 3rem;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.max-w-800 {
+    max-width: 800px;
+}
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.pagination-info {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+}
+
+.modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-container {
+    background: var(--dark-card);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 600px;
+    padding: 2rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    padding-bottom: 1rem;
+}
+
+.modal-title {
+    color: var(--light);
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--gray);
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--danger);
+}
+
+/* Form Styles */
+.form-grid {
+    display: grid;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 0.5rem;
+}
+
+.form-label {
+    display: block;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.8rem;
+    background: var(--dark-alt);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 8px;
+    color: var(--light);
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--secondary);
+    box-shadow: 0 0 0 2px rgba(100, 255, 218, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.form-actions button {
+    flex: 1;
+}
+
+/* Services List in Modal */
+.user-services-list {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(100, 255, 218, 0.1);
+}
+
+.user-services-title {
+    color: var(--light);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.services-content {
+    color: var(--gray);
+}
+
+.user-notifications-section {
+    margin-top: 1.5rem;
+}
+
+/* Configuration Page Styles */
+.config-header {
+    color: var(--light);
+    margin-bottom: 1.5rem;
+}
+
+.config-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.config-card {
+    padding: 1.5rem;
+    background: var(--dark-alt);
+    border-radius: 12px;
+    border: 1px solid rgba(100, 255, 218, 0.05);
+    /* Added slight border for consistency */
+}
+
+.config-card h4 {
+    color: var(--secondary);
+    margin-bottom: 1rem;
+}
+
+.config-details {
+    color: var(--gray);
+    display: grid;
+    gap: 0.5rem;
+}
+
+.config-details p {
+    margin-bottom: 0;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* ==========================================
    RESPONSIVE
    ========================================== */
 

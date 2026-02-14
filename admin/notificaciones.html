@@ -27,7 +27,7 @@
                 <a href="configuracion.html" class="admin-menu-item"><i>⚙️</i><span>Configuración</span></a>
             </nav>
             <div class="admin-footer">
-                <button class="btn btn-danger btn-sm" id="admin-logout-btn" style="width: 100%;">Cerrar Sesión</button>
+                <button class="btn btn-danger btn-sm w-100" id="admin-logout-btn">Cerrar Sesión</button>
             </div>
         </aside>
         <main class="admin-main">
@@ -40,23 +40,19 @@
             </header>
             <div class="admin-content">
                 <div class="table-card">
-                    <h3 style="color: var(--light); margin-bottom: 1.5rem;">📢 Notificación Masiva</h3>
-                    <form id="notification-form" style="display: grid; gap: 1.5rem; max-width: 800px;">
+                    <h3 class="config-header">📢 Notificación Masiva</h3>
+                    <form id="notification-form" class="form-grid max-w-800">
                         <div>
-                            <label
-                                style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Destinatarios</label>
-                            <select id="recipients-type"
-                                style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                            <label class="form-label" for="recipients-type">Destinatarios</label>
+                            <select id="recipients-type" class="form-select">
                                 <option value="all">Todos los usuarios</option>
                                 <option value="active">Solo usuarios con servicios activos</option>
                                 <option value="pending">Solo usuarios con facturas pendientes</option>
                             </select>
                         </div>
                         <div>
-                            <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Tipo de
-                                Notificación</label>
-                            <select id="notification-type"
-                                style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                            <label class="form-label" for="notification-type">Tipo de Notificación</label>
+                            <select id="notification-type" class="form-select">
                                 <option value="info">Info</option>
                                 <option value="success">Success</option>
                                 <option value="warning">Warning</option>
@@ -64,48 +60,45 @@
                             </select>
                         </div>
                         <div>
-                            <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Título</label>
-                            <input type="text" id="notification-title" required
-                                placeholder="Ej: Nueva actualización disponible"
-                                style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                            <label class="form-label">Título</label>
+                            <input type="text" id="notification-title" required class="form-control"
+                                placeholder="Ej: Nueva actualización disponible">
                         </div>
                         <div>
-                            <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Mensaje</label>
-                            <textarea id="notification-message" required rows="4"
-                                placeholder="Escribe tu mensaje aquí..."
-                                style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;"></textarea>
+                            <label class="form-label">Mensaje</label>
+                            <textarea id="notification-message" required rows="4" class="form-control"
+                                placeholder="Escribe tu mensaje aquí..."></textarea>
                         </div>
-                        <div
-                            style="padding: 1rem; background: var(--dark-alt); border-radius: 8px; border: 1px solid rgba(100, 255, 218, 0.1);">
-                            <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 0.5rem;">Vista previa
-                                enviada a: <span id="recipients-count"
-                                    style="color: var(--secondary); font-weight: 600;">0</span> usuarios</p>
+                        <div class="config-card p-1">
+                            <p class="text-gray fs-0-9 mb-0-5">Vista previa enviada a: <span id="recipients-count"
+                                    class="text-secondary fw-600">0</span> usuarios</p>
                         </div>
-                        <div style="display: flex; gap: 1rem;">
+                        <div class="flex-gap-1">
                             <button type="submit" class="btn btn-primary">📤 Enviar Notificaciones</button>
                             <button type="button" class="btn btn-secondary"
                                 onclick="document.getElementById('notification-form').reset()">Limpiar</button>
                         </div>
                     </form>
                 </div>
-                <div class="table-card" style="margin-top: 2rem;">
-                    <h3 style="color: var(--light); margin-bottom: 1.5rem;">📋 Historial de Envíos</h3>
-                    <table class="admin-table">
-                        <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Título</th>
-                                <th>Tipo</th>
-                                <th>Destinatarios</th>
-                            </tr>
-                        </thead>
-                        <tbody id="history-table-body">
-                            <tr>
-                                <td colspan="4" style="text-align: center; color: var(--gray); padding: 2rem;">No hay
-                                    historial</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="table-card mt-2">
+                    <h3 class="config-header">📋 Historial de Envíos</h3>
+                    <div class="table-responsive">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Título</th>
+                                    <th>Tipo</th>
+                                    <th>Destinatarios</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-table-body">
+                                <tr>
+                                    <td colspan="4" class="text-center text-gray p-2">No hay historial</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </main>

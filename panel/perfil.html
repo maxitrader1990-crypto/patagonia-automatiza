@@ -48,7 +48,7 @@
                     <div class="hamburger-toggle" id="sidebar-toggle">☰</div>
                     <div class="notification-icon" id="notification-bell">
                         🔔
-                        <span class="notification-badge" id="notification-count" style="display: none;">0</span>
+                        <span class="notification-badge d-none" id="notification-count">0</span>
                         <div class="notification-dropdown" id="notification-dropdown">
                             <div class="notification-dropdown-header">
                                 <h4>Notificaciones</h4>
@@ -80,36 +80,26 @@
                 <!-- Información Personal -->
                 <div class="section-card animate-fade-in animate-delay-1">
                     <h3>👤 Información Personal</h3>
-                    <form id="profile-form" style="margin-top: 1.5rem;">
-                        <div
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                    <form id="profile-form" class="profile-section">
+                        <div class="profile-grid">
                             <div>
-                                <label
-                                    style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Nombre
-                                    Completo</label>
-                                <input type="text" id="nombre"
-                                    style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                                <label for="nombre" class="form-label">Nombre Completo</label>
+                                <input type="text" id="nombre" class="form-input">
                             </div>
                             <div>
-                                <label
-                                    style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Email</label>
-                                <input type="email" id="email" disabled
-                                    style="width: 100%; padding: 0.8rem; background: var(--dark); border: 1px solid rgba(100, 255, 218, 0.1); border-radius: 8px; color: var(--gray); font-family: 'Outfit', sans-serif; cursor: not-allowed;">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" id="email" disabled class="form-input">
                             </div>
                             <div>
-                                <label
-                                    style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Teléfono</label>
-                                <input type="tel" id="telefono"
-                                    style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="tel" id="telefono" class="form-input">
                             </div>
                             <div>
-                                <label
-                                    style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Empresa</label>
-                                <input type="text" id="empresa"
-                                    style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                                <label for="empresa" class="form-label">Empresa</label>
+                                <input type="text" id="empresa" class="form-input">
                             </div>
                         </div>
-                        <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                        <div class="form-actions">
                             <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                             <button type="button" class="btn btn-secondary" id="cancel-btn">Cancelar</button>
                         </div>
@@ -119,19 +109,18 @@
                 <!-- Seguridad -->
                 <div class="section-card animate-fade-in animate-delay-2">
                     <h3>🔒 Seguridad</h3>
-                    <div style="margin-top: 1.5rem;">
-                        <div
-                            style="padding: 1.5rem; background: var(--dark-alt); border-radius: 12px; border: 1px solid rgba(100, 255, 218, 0.1); margin-bottom: 1rem;">
-                            <h4 style="color: var(--light); margin-bottom: 0.5rem;">Cambiar Contraseña</h4>
-                            <p style="color: var(--gray); margin-bottom: 1rem; font-size: 0.9rem;">Te enviaremos un
-                                email para restablecer tu contraseña</p>
-                            <button class="btn btn-secondary" id="reset-password-btn">Restablecer Contraseña</button>
+                    <div class="profile-section">
+                        <div class="profile-card">
+                            <h4>Cambiar Contraseña</h4>
+                            <p>Te enviaremos un email para restablecer tu contraseña</p>
+                            <div class="mt-1">
+                                <button class="btn btn-secondary" id="reset-password-btn">Restablecer
+                                    Contraseña</button>
+                            </div>
                         </div>
-                        <div
-                            style="padding: 1.5rem; background: var(--dark-alt); border-radius: 12px; border: 1px solid rgba(100, 255, 218, 0.1);">
-                            <h4 style="color: var(--light); margin-bottom: 0.5rem;">Sesión Activa</h4>
-                            <p style="color: var(--gray); font-size: 0.9rem;">Última conexión: <span
-                                    id="last-login">Cargando...</span></p>
+                        <div class="profile-card">
+                            <h4>Sesión Activa</h4>
+                            <p>Última conexión: <span id="last-login">Cargando...</span></p>
                         </div>
                     </div>
                 </div>
@@ -139,16 +128,14 @@
                 <!-- Información de la Cuenta -->
                 <div class="section-card animate-fade-in animate-delay-3">
                     <h3>📋 Información de la Cuenta</h3>
-                    <div
-                        style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
-                        <div style="padding: 1rem; background: var(--dark-alt); border-radius: 8px;">
-                            <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 0.5rem;">Cliente desde</p>
-                            <p style="color: var(--light); font-weight: 600;" id="fecha-registro">-</p>
+                    <div class="account-info-grid">
+                        <div class="account-info-card">
+                            <p class="form-label account-label">Cliente desde</p>
+                            <p class="account-value" id="fecha-registro">-</p>
                         </div>
-                        <div style="padding: 1rem; background: var(--dark-alt); border-radius: 8px;">
-                            <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 0.5rem;">ID de Cliente</p>
-                            <p style="color: var(--light); font-weight: 600; font-family: monospace; font-size: 0.85rem;"
-                                id="cliente-id">-</p>
+                        <div class="account-info-card">
+                            <p class="form-label account-label">ID de Cliente</p>
+                            <p class="account-value account-value-mono" id="cliente-id">-</p>
                         </div>
                     </div>
                 </div>

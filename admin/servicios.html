@@ -29,7 +29,7 @@
                 <a href="configuracion.html" class="admin-menu-item"><i>⚙️</i><span>Configuración</span></a>
             </nav>
             <div class="admin-footer">
-                <button class="btn btn-danger btn-sm" id="admin-logout-btn" style="width: 100%;">Cerrar Sesión</button>
+                <button class="btn btn-danger btn-sm w-100" id="admin-logout-btn">Cerrar Sesión</button>
             </div>
         </aside>
 
@@ -45,7 +45,7 @@
 
             <div class="admin-content">
                 <!-- Stats -->
-                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="stats-grid grid-audit">
                     <div class="stat-card">
                         <div class="stat-value" id="total-services">0</div>
                         <div class="stat-label">Total Servicios</div>
@@ -61,11 +61,11 @@
                 </div>
 
                 <!-- Filters and Actions -->
-                <div class="table-card" style="margin-top: 2rem;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                            <select id="filter-type" class="btn btn-secondary btn-sm" style="padding: 0.5rem 1rem;">
+                <div class="table-card mt-2">
+                    <div class="flex-between mb-1-5">
+                        <div class="flex-gap-0-5 flex-wrap">
+                            <select id="filter-type" class="btn btn-secondary btn-sm p-0-5-1"
+                                aria-label="Filtrar por tipo de servicio">
                                 <option value="">Todos los tipos</option>
                                 <option value="hosting">Hosting</option>
                                 <option value="telecomunicaciones">Telecomunicaciones</option>
@@ -73,7 +73,8 @@
                                 <option value="electricidad">Electricidad</option>
                                 <option value="seguridad">Seguridad</option>
                             </select>
-                            <select id="filter-status" class="btn btn-secondary btn-sm" style="padding: 0.5rem 1rem;">
+                            <select id="filter-status" class="btn btn-secondary btn-sm p-0-5-1"
+                                aria-label="Filtrar por estado">
                                 <option value="">Todos los estados</option>
                                 <option value="activo">Activo</option>
                                 <option value="pausado">Pausado</option>
@@ -84,7 +85,7 @@
                     </div>
 
                     <!-- Services Table -->
-                    <div style="overflow-x: auto;">
+                    <div class="table-responsive">
                         <table class="admin-table">
                             <thead>
                                 <tr>
@@ -99,7 +100,7 @@
                             </thead>
                             <tbody id="services-table-body">
                                 <tr>
-                                    <td colspan="7" style="text-align: center; padding: 3rem;">Cargando servicios...
+                                    <td colspan="7" class="text-center p-3rem">Cargando servicios...
                                     </td>
                                 </tr>
                             </tbody>
@@ -110,25 +111,22 @@
         </main>
     </div>
 
-    <!-- Modal Add/Edit Service -->
-    <div id="service-modal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; align-items: center; justify-content: center;">
-        <div
-            style="background: var(--dark-card); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 16px; width: 90%; max-width: 600px; padding: 2rem;">
-            <h2 id="service-modal-title" style="color: var(--light); margin-bottom: 1.5rem;">Nuevo Servicio</h2>
-            <form id="service-form" style="display: grid; gap: 1rem;">
+    <!-- Modal Nuevo Servicio -->
+    <div id="service-modal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 id="service-modal-title" class="modal-title">Nuevo Servicio</h2>
+            <form id="service-form" class="form-grid">
                 <input type="hidden" id="service-id">
+
                 <div>
-                    <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Cliente</label>
-                    <select id="service-cliente" required
-                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                    <label class="form-label" for="service-cliente">Cliente</label>
+                    <select id="service-cliente" required class="form-select">
                         <option value="">Seleccionar cliente...</option>
                     </select>
                 </div>
                 <div>
-                    <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Tipo de Servicio</label>
-                    <select id="service-tipo" required
-                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                    <label class="form-label" for="service-tipo">Tipo de Servicio</label>
+                    <select id="service-tipo" required class="form-select">
                         <option value="hosting">Hosting</option>
                         <option value="telecomunicaciones">Telecomunicaciones</option>
                         <option value="informatica">Informática</option>
@@ -137,28 +135,25 @@
                     </select>
                 </div>
                 <div>
-                    <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Descripción</label>
-                    <textarea id="service-descripcion" rows="3"
-                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;"></textarea>
+                    <label class="form-label" for="service-descripcion">Descripción</label>
+                    <textarea id="service-descripcion" rows="3" class="form-control"></textarea>
                 </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-row">
                     <div>
-                        <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Precio Mensual</label>
-                        <input type="number" id="service-precio" step="0.01"
-                            style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                        <label class="form-label" for="service-precio">Precio Mensual</label>
+                        <input type="number" id="service-precio" step="0.01" class="form-control">
                     </div>
                     <div>
-                        <label style="display: block; color: var(--gray); margin-bottom: 0.5rem;">Estado</label>
-                        <select id="service-estado"
-                            style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                        <label class="form-label" for="service-estado">Estado</label>
+                        <select id="service-estado" class="form-select">
                             <option value="activo">Activo</option>
                             <option value="pausado">Pausado</option>
                             <option value="cancelado">Cancelado</option>
                         </select>
                     </div>
                 </div>
-                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                    <button type="submit" class="btn btn-primary" style="flex: 1;">Guardar</button>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary flex-1">Guardar</button>
                     <button type="button" class="btn btn-secondary" onclick="closeServiceModal()">Cancelar</button>
                 </div>
             </form>

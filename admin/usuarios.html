@@ -50,7 +50,7 @@
                 </a>
             </nav>
             <div class="admin-footer">
-                <button class="btn btn-danger btn-sm" id="admin-logout-btn" style="width: 100%;">Cerrar Sesión</button>
+                <button class="btn btn-danger btn-sm w-100" id="admin-logout-btn">Cerrar Sesión</button>
             </div>
         </aside>
 
@@ -68,7 +68,7 @@
             <!-- Content -->
             <div class="admin-content">
                 <!-- Stats -->
-                <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-value" id="total-users-count">0</div>
                         <div class="stat-label">Total Usuarios</div>
@@ -84,14 +84,13 @@
                 </div>
 
                 <!-- Filters and Search -->
-                <div class="table-card" style="margin-top: 2rem;">
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-                        <div style="flex: 1; min-width: 300px;">
-                            <input type="text" id="search-users" placeholder="🔍 Buscar por nombre o email..."
-                                style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                <div class="table-card">
+                    <div class="admin-search-container">
+                        <div class="search-wrapper">
+                            <input type="text" id="search-users" class="admin-search-input"
+                                placeholder="🔍 Buscar por nombre o email..." aria-label="Buscar usuarios">
                         </div>
-                        <div style="display: flex; gap: 0.5rem;">
+                        <div class="action-buttons">
                             <button class="btn btn-secondary btn-sm" onclick="exportUsers()">📥 Exportar CSV</button>
                             <button class="btn btn-primary btn-sm" onclick="showAddUserModal()">➕ Agregar
                                 Usuario</button>
@@ -99,7 +98,7 @@
                     </div>
 
                     <!-- Users Table -->
-                    <div style="overflow-x: auto;">
+                    <div class="table-responsive">
                         <table class="admin-table">
                             <thead>
                                 <tr>
@@ -114,8 +113,8 @@
                                 </tr>
                             </thead>
                             <tbody id="users-table-body">
-                                <tr>
-                                    <td colspan="8" style="text-align: center; color: var(--gray); padding: 3rem;">
+                                <tr class="table-loading-row">
+                                    <td colspan="8">
                                         Cargando usuarios...
                                     </td>
                                 </tr>
@@ -124,9 +123,8 @@
                     </div>
 
                     <!-- Pagination -->
-                    <div
-                        style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(100, 255, 218, 0.1);">
-                        <div style="color: var(--gray); font-size: 0.9rem;">
+                    <div class="pagination-container">
+                        <div class="pagination-info">
                             Mostrando <span id="showing-count">0</span> de <span id="total-count">0</span> usuarios
                         </div>
                         <div id="pagination-controls"></div>
@@ -137,60 +135,48 @@
     </div>
 
     <!-- Modal Ver/Editar Usuario -->
-    <div id="user-modal"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 9999; align-items: center; justify-content: center;">
-        <div
-            style="background: var(--dark-card); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 16px; width: 90%; max-width: 600px; padding: 2rem; max-height: 90vh; overflow-y: auto;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-                <h2 id="modal-title" style="color: var(--light); margin: 0;">Detalles del Usuario</h2>
-                <button onclick="closeUserModal()"
-                    style="background: none; border: none; color: var(--gray); font-size: 1.5rem; cursor: pointer;">✕</button>
+    <div id="user-modal" class="modal-overlay">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h2 id="modal-title" class="modal-title">Detalles del Usuario</h2>
+                <button onclick="closeUserModal()" class="modal-close">✕</button>
             </div>
 
-            <form id="user-form" style="display: grid; gap: 1rem;">
+            <form id="user-form" class="form-grid">
                 <input type="hidden" id="user-id">
 
-                <div>
-                    <label style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Nombre
-                        Completo</label>
-                    <input type="text" id="user-nombre" required
-                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                <div class="form-group">
+                    <label class="form-label" for="user-nombre">Nombre Completo</label>
+                    <input type="text" id="user-nombre" class="form-input" required>
                 </div>
 
-                <div>
-                    <label
-                        style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Email</label>
-                    <input type="email" id="user-email" required
-                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                <div class="form-group">
+                    <label class="form-label" for="user-email">Email</label>
+                    <input type="email" id="user-email" class="form-input" required>
                 </div>
 
-                <div>
-                    <label
-                        style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Teléfono</label>
-                    <input type="tel" id="user-telefono"
-                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                <div class="form-group">
+                    <label class="form-label" for="user-telefono">Teléfono</label>
+                    <input type="tel" id="user-telefono" class="form-input">
                 </div>
 
-                <div>
-                    <label
-                        style="display: block; color: var(--gray); margin-bottom: 0.5rem; font-size: 0.9rem;">Empresa</label>
-                    <input type="text" id="user-empresa"
-                        style="width: 100%; padding: 0.8rem; background: var(--dark-alt); border: 1px solid rgba(100, 255, 218, 0.2); border-radius: 8px; color: var(--light); font-family: 'Outfit', sans-serif;">
+                <div class="form-group">
+                    <label class="form-label" for="user-empresa">Empresa</label>
+                    <input type="text" id="user-empresa" class="form-input">
                 </div>
 
-                <div style="display: flex; gap: 1rem; margin-top: 1rem;">
-                    <button type="submit" class="btn btn-primary" style="flex: 1;">Guardar Cambios</button>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                     <button type="button" class="btn btn-secondary" onclick="closeUserModal()">Cancelar</button>
                 </div>
             </form>
 
-            <div id="user-services"
-                style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(100, 255, 218, 0.1);">
-                <h3 style="color: var(--light); margin-bottom: 1rem; font-size: 1.1rem;">Servicios del Usuario</h3>
-                <div id="services-list" style="color: var(--gray);">Cargando...</div>
+            <div id="user-services" class="user-services-list">
+                <h3 class="user-services-title">Servicios del Usuario</h3>
+                <div id="services-list" class="services-content">Cargando...</div>
             </div>
 
-            <div id="user-notifications" style="margin-top: 1.5rem;">
+            <div id="user-notifications" class="user-notifications-section">
                 <button class="btn btn-secondary btn-sm" onclick="sendNotificationToUser()">📢 Enviar
                     Notificación</button>
             </div>

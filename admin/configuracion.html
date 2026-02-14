@@ -27,7 +27,7 @@
                 <a href="configuracion.html" class="admin-menu-item active"><i>⚙️</i><span>Configuración</span></a>
             </nav>
             <div class="admin-footer">
-                <button class="btn btn-danger btn-sm" id="admin-logout-btn" style="width: 100%;">Cerrar Sesión</button>
+                <button class="btn btn-danger btn-sm w-100" id="admin-logout-btn">Cerrar Sesión</button>
             </div>
         </aside>
         <main class="admin-main">
@@ -39,23 +39,23 @@
             </header>
             <div class="admin-content">
                 <div class="table-card">
-                    <h3 style="color: var(--light); margin-bottom: 1.5rem;">⚙️ Ajustes Generales</h3>
-                    <div style="display: grid; gap: 1.5rem;">
-                        <div style="padding: 1.5rem; background: var(--dark-alt); border-radius: 12px;">
-                            <h4 style="color: var(--secondary); margin-bottom: 1rem;">📧 Información de Contacto</h4>
-                            <div style="color: var(--gray); display: grid; gap: 0.5rem;">
+                    <h3 class="config-header">⚙️ Ajustes Generales</h3>
+                    <div class="config-grid">
+                        <div class="config-card">
+                            <h4>📧 Información de Contacto</h4>
+                            <div class="config-details">
                                 <p>Email: soporte@patagoniaautomatiza.com</p>
                                 <p>Teléfono: +54 (294) 412-3456</p>
                                 <p>WhatsApp: +54 294 412-3456</p>
                             </div>
                         </div>
-                        <div style="padding: 1.5rem; background: var(--dark-alt); border-radius: 12px;">
-                            <h4 style="color: var(--secondary); margin-bottom: 1rem;">🔐 Super Administradores</h4>
-                            <div id="super-admins-list" style="color: var(--gray);">Cargando...</div>
+                        <div class="config-card">
+                            <h4>🔐 Super Administradores</h4>
+                            <div id="super-admins-list" class="services-content">Cargando...</div>
                         </div>
-                        <div style="padding: 1.5rem; background: var(--dark-alt); border-radius: 12px;">
-                            <h4 style="color: var(--secondary); margin-bottom: 1rem;">📊 Estadísticas del Sistema</h4>
-                            <div style="color: var(--gray); display: grid; gap: 0.5rem;">
+                        <div class="config-card">
+                            <h4>📊 Estadísticas del Sistema</h4>
+                            <div class="config-details">
                                 <p>Base de datos: Supabase (PostgreSQL)</p>
                                 <p>Hosting: Vercel</p>
                                 <p>Autenticación: Supabase Auth</p>
